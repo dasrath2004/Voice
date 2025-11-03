@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Voice Task Manager</string>
+
+    <string name="default_web_client_id">
+        357719760505-u7qbsd6phfcovae5os6ksfe5pofei85n.apps.googleusercontent.com
+    </string>
 </resources>

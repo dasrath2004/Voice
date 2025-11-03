@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verify phone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your phone number to receive a code"
+            android:textSize="14sp"
+            android:textColor="@color/soft_gray"
+            android:layout_marginTop="6dp"/>
+
+        <!-- Phone input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone (e.g. +919876543210)"
+            app:boxStrokeColor="@color/purple_accent"
+            android:layout_marginTop="14dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textColor="@color/white"
+                android:textColorHint="@color/hint_gray"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSendCode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:text="Send Code"
+            android:backgroundTint="@color/purple_accent"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp"/>
+
+        <!-- OTP entry (6 boxes) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter the 6-digit code"
+            android:textColor="@color/soft_gray"
+            android:layout_marginTop="18dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:padding="6dp">
+
+            <!-- Box 1..6 (we use EditTexts but style as boxes) -->
+            <EditText
+                android:id="@+id/otp_1"
+                style="@style/NeonOtpBox"
+                android:layout_marginEnd="8dp"
+                android:inputType="number"
+                android:maxLength="1"/>
+
+            <EditText
+                android:id="@+id/otp_2"
+                style="@style/NeonOtpBox"
+                android:layout_marginEnd="8dp"
+                android:inputType="number"
+                android:maxLength="1"/>
+
+            <EditText
+                android:id="@+id/otp_3"
+                style="@style/NeonOtpBox"
+                android:layout_marginEnd="8dp"
+                android:inputType="number"
+                android:maxLength="1"/>
+
+            <EditText
+                android:id="@+id/otp_4"
+                style="@style/NeonOtpBox"
+                android:layout_marginEnd="8dp"
+                android:inputType="number"
+                android:maxLength="1"/>
+
+            <EditText
+                android:id="@+id/otp_5"
+                style="@style/NeonOtpBox"
+                android:layout_marginEnd="8dp"
+                android:inputType="number"
+                android:maxLength="1"/>
+
+            <EditText
+                android:id="@+id/otp_6"
+                style="@style/NeonOtpBox"
+                android:inputType="number"
+                android:maxLength="1"/>
+        </LinearLayout>
+
+        <!-- Hidden combined code field used by PhoneOTPActivity -->
+        <EditText
+            android:id="@+id/etOtpCode"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVerifyCode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="Verify Code"
+            android:backgroundTint="@color/purple_accent"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp"/>
+    </LinearLayout>
+</ScrollView>

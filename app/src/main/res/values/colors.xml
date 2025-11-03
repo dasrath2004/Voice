@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="dark_bg">#0A0A0A</color>
+    <color name="card_bg">#111214</color>
+    <color name="white">#FFFFFF</color>
+    <color name="soft_gray">#BFC0C7</color>
+    <color name="hint_gray">#9DA0A6</color>
+    <color name="transparent_black">#1A000000</color>
+    <color name="purple_accent">#9B4DFF</color>
+    <color name="press_overlay">#33FFFFFF</color>
 </resources>

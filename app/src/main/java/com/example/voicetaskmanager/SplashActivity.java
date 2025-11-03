@@ -6,19 +6,32 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SplashActivity extends AppCompatActivity {
+
+    private static final long SPLASH_DELAY_MS = 3000; // adjust to your animation length
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);  // connects to your splash XML layout
+        setContentView(R.layout.activity_splash);
 
-        // Wait for 3 seconds, then open LoginActivity
+        LottieAnimationView lottie = findViewById(R.id.micAnimation);
+        lottie.setRepeatCount(0); // play only once
+        lottie.playAnimation();
+
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish(); // close splash screen so user can’t go back to it
-        }, 3000); // 3000 milliseconds = 3 seconds
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // already logged in
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            } else {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            }
+            finish();
+        }, SPLASH_DELAY_MS);
     }
 }
-

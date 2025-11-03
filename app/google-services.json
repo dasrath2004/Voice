@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "357719760505",
+    "project_id": "voice-task-manager-f2160",
+    "storage_bucket": "voice-task-manager-f2160.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357719760505:android:b954861f17db9e45c03ea8",
+        "android_client_info": {
+          "package_name": "com.example.voicetaskmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357719760505-nrpj9em6bbcdoehaheslbmu85vm17q42.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.voicetaskmanager",
+            "certificate_hash": "31cabb832fbf6f5984013c7300c6194eef38b561"
+          }
+        },
+        {
+          "client_id": "357719760505-u7qbsd6phfcovae5os6ksfe5pofei85n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9-3E-GkbkhrTFdpSDXcEt_RHDzKb6ODA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357719760505-u7qbsd6phfcovae5os6ksfe5pofei85n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
