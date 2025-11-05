@@ -1,17 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="Base.Theme.VoiceTaskManager" parent="Theme.Material3.DayNight.NoActionBar">
-
-        <!-- Global button style -->
-        <item name="materialButtonStyle">@style/AppButtonStyle</item>
-        <item name="android:buttonStyle">@style/AppButtonStyle</item>
-
-        <!-- Global text color -->
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColor">@color/white</item>
-
+<resources>
+    <style name="Theme.VoiceTaskManager" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryBlue</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorSecondary">@color/accentTeal</item>
+        <item name="colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/card_bg</item>
     </style>
-
-    <style name="Theme.VoiceTaskManager" parent="Base.Theme.VoiceTaskManager" />
+    <style name="Theme.VoiceTaskManager.NoActionBar" parent="Theme.VoiceTaskManager">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
 </resources>

@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="dark_bg">#0A0A0A</color>
-    <color name="card_bg">#111214</color>
-    <color name="white">#FFFFFF</color>
-    <color name="soft_gray">#BFC0C7</color>
-    <color name="hint_gray">#9DA0A6</color>
-    <color name="transparent_black">#1A000000</color>
-    <color name="purple_accent">#9B4DFF</color>
-    <color name="press_overlay">#33FFFFFF</color>
+    <color name="primaryBlue">#1E88E5</color>
+    <color name="accentTeal">#00897B</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#F5F5F5</color>
+    <color name="card_bg">#EEEEEE</color>
+    <color name="textPrimary">#212121</color>
+    <color name="purple_accent">#9C27B0</color>
+    <color name="textSecondary">#5F6368</color>
+
 </resources>

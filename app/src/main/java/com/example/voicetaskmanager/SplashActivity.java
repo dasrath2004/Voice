@@ -3,7 +3,9 @@ package com.example.voicetaskmanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -12,26 +14,50 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long SPLASH_DELAY_MS = 3000; // adjust to your animation length
+    private static final long SPLASH_DELAY = 2000; // 2 seconds
+    private LottieAnimationView lottieSplash;
+    private PrefsManager prefs;
+    private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        // Initialize PrefsManager
+        prefs = new PrefsManager(this);
+
+        // Apply saved theme before calling super.onCreate
+        if (prefs.isDarkMode()) {
+            setTheme(R.style.Theme_VoiceTaskManager); // Your dark theme
+        } else {
+            setTheme(R.style.Theme_VoiceTaskManager); // Your light theme
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        LottieAnimationView lottie = findViewById(R.id.micAnimation);
-        lottie.setRepeatCount(0); // play only once
-        lottie.playAnimation();
+        lottieSplash = findViewById(R.id.lottieSplash);
+        mAuth = FirebaseAuth.getInstance();
 
-        new Handler().postDelayed(() -> {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            if (user != null) {
-                // already logged in
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            } else {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            }
-            finish();
-        }, SPLASH_DELAY_MS);
+        // Optional: start Lottie animation
+        lottieSplash.playAnimation();
+
+        // Navigate after delay
+        new Handler(Looper.getMainLooper()).postDelayed(this::checkUserAndNavigate, SPLASH_DELAY);
+    }
+
+    private void checkUserAndNavigate() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        Intent intent;
+        if (currentUser != null) {
+            // User already logged in → MainActivity
+            intent = new Intent(SplashActivity.this, MainActivity.class);
+        } else {
+            // Not logged in → LoginActivity
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
+        }
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

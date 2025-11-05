@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -21,19 +18,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-
+import androidx.cardview.widget.CardView;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SignupOptionsActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupOptionsAct";
-
     private MaterialButton btnGoogle;
-    private MaterialCardView phoneTile;
+    private CardView phoneTile;
     private TextView tvGoToLogin;
     private LottieAnimationView optionsAnimation;
 
@@ -75,15 +69,14 @@ public class SignupOptionsActivity extends AppCompatActivity {
         });
 
         btnGoogle.setOnClickListener(v -> {
-            mAuth.signOut(); // make sure clean state
+            mAuth.signOut();
             Intent intent = googleClient.getSignInIntent();
             googleLauncher.launch(intent);
         });
 
         phoneTile.setOnClickListener(v -> {
-            // go to Phone OTP activity in signup mode
             mAuth.signOut();
-            Intent i = new Intent(SignupOptionsActivity.this, PhoneOTPActivity.class);
+            Intent i = new Intent(SignupOptionsActivity.this, PhoneSignupActivity.class);
             i.putExtra("mode", "signup");
             startActivity(i);
         });
@@ -102,7 +95,6 @@ public class SignupOptionsActivity extends AppCompatActivity {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
-                // Save or update user profile in Firestore
                 String uid = mAuth.getCurrentUser().getUid();
                 String name = mAuth.getCurrentUser().getDisplayName();
                 String email = mAuth.getCurrentUser().getEmail();
@@ -119,9 +111,7 @@ public class SignupOptionsActivity extends AppCompatActivity {
                 profile.put("lastLogin", FieldValue.serverTimestamp());
 
                 db.collection("users").document(uid).set(profile).addOnSuccessListener(aVoid -> {
-                    // after signup with google, go to setup profile
-                    Intent i = new Intent(SignupOptionsActivity.this, SetupProfileActivity.class);
-                    startActivity(i);
+                    startActivity(new Intent(SignupOptionsActivity.this, SetupProfileActivity.class));
                     finish();
                 }).addOnFailureListener(e -> {
                     Toast.makeText(SignupOptionsActivity.this, "Failed to save profile", Toast.LENGTH_SHORT).show();

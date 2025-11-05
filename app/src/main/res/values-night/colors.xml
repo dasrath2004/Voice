@@ -1,0 +1,12 @@
+<resources>
+    <color name="primaryBlue">#1E88E5</color>
+    <color name="accentTeal">#00897B</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="card_bg">#2C2C2C</color>
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="purple_accent">#BB86FC</color>
+    <color name="textSecondary">#B0B0B0</color>
+
+</resources>
