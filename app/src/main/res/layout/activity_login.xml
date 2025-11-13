@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="#121212"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,33 +13,36 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loginAnimation"
-            android:layout_width="260dp"
+            android:layout_width="240dp"
             android:layout_height="180dp"
             app:lottie_rawRes="@raw/welcome"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutIdentifier"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Email or Phone"
-            app:boxStrokeColor="@color/primaryBlue"
+            android:layout_marginTop="16dp"
+            android:hint="Email"
+            app:boxStrokeColor="#FFFFFF"
+            app:hintTextColor="#FFFFFF"
             app:layout_constraintTop_toBottomOf="@id/loginAnimation"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLoginIdentifier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:padding="12dp"/>
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:inputType="textEmailAddress"
+                android:padding="12dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -47,64 +50,61 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:hint="Password"
             app:endIconMode="password_toggle"
-            app:boxStrokeColor="@color/primaryBlue"
+            app:boxStrokeColor="#FFFFFF"
+            app:hintTextColor="#FFFFFF"
             app:layout_constraintTop_toBottomOf="@id/layoutIdentifier"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
                 android:inputType="textPassword"
-                android:padding="12dp"/>
+                android:padding="12dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            style="@style/Widget.VTM.PrimaryButton"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:text="Login"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1E88E5"
             app:layout_constraintTop_toBottomOf="@id/layoutPass"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="18dp"/>
+            android:layout_marginTop="24dp" />
 
         <TextView
             android:id="@+id/tvForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
-            android:textColor="@color/primaryBlue"
+            android:textColor="#BB86FC"
+            android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/btnLogin"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="12dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp" />
 
         <TextView
-            android:id="@+id/tvNotUser"
+            android:id="@+id/tvSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don’t have an account?"
-            android:textColor="@color/textSecondary"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin"
-            app:layout_constraintStart_toEndOf="@id/tvForgotPassword"
-            android:layout_marginStart="12dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSignupOptions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:backgroundTint="@color/surface"
-            android:textColor="@color/primaryBlue"
-            app:cornerRadius="12dp"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin"
-            app:layout_constraintStart_toEndOf="@id/tvForgotPassword"
-            android:layout_marginStart="140dp"/>
-
+            android:text="Don't have an account? Signup"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

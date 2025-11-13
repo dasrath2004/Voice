@@ -2,5 +2,14 @@
     <string name="app_name">Voice Task Manager</string>
 
     <string name="default_web_client_id">357719760505-u7qbsd6phfcovae5os6ksfe5pofei85n.apps.googleusercontent.com</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 
 </resources>

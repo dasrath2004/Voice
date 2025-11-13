@@ -1,65 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:gravity="center"
+        android:padding="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Finish your profile"
-            android:textAppearance="@style/TextAppearance.VTM.Headline"/>
+            android:text="Finish Your Profile"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"
+            android:gravity="center" />
 
         <FrameLayout
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="18dp">
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginBottom="18dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_avatar_placeholder"
-                android:contentDescription="avatar"/>
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:background="@drawable/white_round_shape"
+                android:elevation="4dp" />
 
             <ImageView
                 android:id="@+id/ivAddPhoto"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_gravity="bottom|end"
+                android:layout_margin="6dp"
                 android:src="@drawable/ic_add"
-                android:layout_margin="4dp"/>
+                android:background="@drawable/purple_circle_bg"
+                android:padding="8dp"
+                android:elevation="6dp" />
         </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            android:layout_marginTop="18dp"
-            app:boxStrokeColor="@color/primaryBlue">
+            android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date of Birth"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDOB"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/textPrimary"/>
+                android:focusable="false"
+                android:clickable="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gender"
+            android:layout_marginBottom="16dp">
+
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveProfile"
-            style="@style/Widget.VTM.PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:text="Save Profile"/>
+            android:text="Save Profile"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

@@ -3,21 +3,27 @@ package com.example.voicetaskmanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextInputEditText etIdentifier, etPassword;
-    private MaterialButton btnLogin, btnSignupOptions;
-    private TextView tvForgotPassword;
+    private TextInputEditText etEmail, etPassword;
+    private MaterialButton btnLogin;
     private FirebaseAuth mAuth;
-
-    private static final String PHONE_DOMAIN = "@vtm.local"; // fake email domain for phone accounts
+    private View tvForgotPassword, tvSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,51 +32,77 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        etIdentifier = findViewById(R.id.etLoginIdentifier);
+        etEmail = findViewById(R.id.etLoginIdentifier);
         etPassword = findViewById(R.id.etLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnSignupOptions = findViewById(R.id.btnSignupOptions);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvSignup = findViewById(R.id.tvSignup);
 
         btnLogin.setOnClickListener(v -> attemptLogin());
-        btnSignupOptions.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignupOptionsActivity.class)));
-        tvForgotPassword.setOnClickListener(v -> {
-            String identifier = etIdentifier.getText().toString().trim();
-            if (identifier.contains("@")) {
-                // email reset
-                if (TextUtils.isEmpty(identifier)) {
-                    Toast.makeText(this, "Enter email to reset password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                mAuth.sendPasswordResetEmail(identifier).addOnCompleteListener(t -> {
-                    if (t.isSuccessful()) Toast.makeText(this, "Password reset email sent", Toast.LENGTH_SHORT).show();
-                    else Toast.makeText(this, "Failed: " + t.getException().getMessage(), Toast.LENGTH_LONG).show();
-                });
-            } else {
-                // phone reset - direct user to PhoneSignupActivity to verify phone and set password
-                Intent i = new Intent(LoginActivity.this, PhoneSignupActivity.class);
-                i.putExtra("mode", "reset"); // mode = reset will verify phone then let user set password
-                startActivity(i);
-            }
-        });
+        makeSignupClickable();
     }
 
     private void attemptLogin() {
-        String id = etIdentifier.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
         String pass = etPassword.getText().toString().trim();
-        if (TextUtils.isEmpty(id)) { etIdentifier.setError("Enter email or phone"); return; }
-        if (TextUtils.isEmpty(pass)) { etPassword.setError("Enter password"); return; }
 
-        String loginEmail = id.contains("@") ? id : (id + PHONE_DOMAIN);
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError("Enter email");
+            return;
+        }
+        if (TextUtils.isEmpty(pass)) {
+            etPassword.setError("Enter password");
+            return;
+        }
 
-        mAuth.signInWithEmailAndPassword(loginEmail, pass).addOnCompleteListener(task -> {
+        mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             } else {
-                Toast.makeText(LoginActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                Exception e = task.getException();
+                if (e instanceof FirebaseAuthInvalidUserException) {
+                    showAlert("Invalid credentials", "No account found for this email.");
+                } else {
+                    showSnack("Invalid email or password");
+                    tvForgotPassword.setVisibility(View.VISIBLE);
+                    tvForgotPassword.setOnClickListener(v ->
+                            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class)
+                                    .putExtra("email", email)));
+                }
             }
         });
+    }
+
+    private void showSnack(String message) {
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void showAlert(String title, String msg) {
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton("OK", (d, w) -> d.dismiss())
+                .show();
+    }
+
+    private void makeSignupClickable() {
+        String text = "Don't have an account? Signup";
+        SpannableString ss = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                startActivity(new Intent(LoginActivity.this, SignupOptionsActivity.class));
+            }
+        };
+
+        int start = text.indexOf("Signup");
+        int end = start + "Signup".length();
+        ss.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        ((android.widget.TextView) tvSignup).setText(ss);
+        ((android.widget.TextView) tvSignup).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override

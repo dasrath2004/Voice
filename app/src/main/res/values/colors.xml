@@ -8,5 +8,8 @@
     <color name="textPrimary">#212121</color>
     <color name="purple_accent">#9C27B0</color>
     <color name="textSecondary">#5F6368</color>
+    <color name="black">#050505</color>
+    <color name="white">#FFFFFF</color>
+    <color name="purple_500">#5E28E1</color>
 
 </resources>
