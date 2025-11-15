@@ -5,7 +5,11 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">Create Account</string>xml
+        <string name="drawer_open">Open navigation drawer</string>
+        <string name="drawer_close">Close navigation drawer</string>
+
+
     <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>

@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
-    android:fillViewport="true">
+    android:background="?attr/colorBackground"
+    android:fillViewport="true"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,8 +40,8 @@
                 android:id="@+id/etLoginIdentifier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:background="@drawable/edittext_background"
                 android:inputType="textEmailAddress"
                 android:padding="12dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,8 +64,8 @@
                 android:id="@+id/etLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#FFFFFF"
+                android:textColor="#000000"
+                android:background="@drawable/edittext_background"
                 android:inputType="textPassword"
                 android:padding="12dp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,6 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:text="Login"
+            app:cornerRadius="20dp"
             android:textColor="#FFFFFF"
             android:backgroundTint="#1E88E5"
             app:layout_constraintTop_toBottomOf="@id/layoutPass"
@@ -101,7 +103,7 @@
             android:layout_height="wrap_content"
             android:text="Don't have an account? Signup"
             android:textSize="14sp"
-            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/black"
             android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
             app:layout_constraintStart_toStartOf="parent"
